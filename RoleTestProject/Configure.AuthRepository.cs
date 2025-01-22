@@ -38,7 +38,7 @@ namespace RoleTestProject
         public void Configure(IWebHostBuilder builder) => builder
             .ConfigureServices(services => services.AddSingleton<IAuthRepository>(c =>
                 new OrmLiteAuthRepository<AppUser, UserAuthDetails>(c.GetRequiredService<IDbConnectionFactory>()) {
-                    UseDistinctRoleTables = true
+                    UseDistinctRoleTables = false
                 }))
             .ConfigureAppHost(appHost => {
                 var authRepo = appHost.Resolve<IAuthRepository>();
@@ -46,7 +46,7 @@ namespace RoleTestProject
                  CreateUser(authRepo, "admin@email.com", "Admin User", "p@55wOrd", roles:new[]{ RoleNames.Admin });
                 CreateUser(authRepo, "testone@email.com", "Test User", "p@55wOrd", roles: new[] { "TestOne" });
                 CreateUser(authRepo, "testtwo@email.com", "Test User", "p@55wOrd", roles: new[] { "TestTwo" });
-                CreateUser(authRepo, "testthree@email.com", "Test User", "p@55wOrd", roles: new[] { "TestTwo" });
+                CreateUser(authRepo, "testthree@email.com", "Test User", "p@55wOrd", roles: new[] { "TestThree" });
             }, afterConfigure: appHost => 
                 appHost.AssertPlugin<AuthFeature>().AuthEvents.Add(new AppUserAuthEvents()));
 
