@@ -43,6 +43,15 @@ namespace RoleTestProject
 
                 appHost.Plugins.Add(new RegistrationFeature()); //Enable /register Service
 
+
+                appHost.AfterInitCallbacks.Add(host => host.AddToAppMetadata(meta =>
+                {
+                    meta.Plugins.AdminUsers.AllRoles.AddRange([
+                        "TheRole",
+                        "TheRoleTwo",
+                    ]);
+                }));
+
                 //override the default registration validation with your own custom implementation
                 appHost.RegisterAs<CustomRegistrationValidator, IValidator<Register>>();
             });

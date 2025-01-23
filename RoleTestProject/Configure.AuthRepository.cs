@@ -44,9 +44,9 @@ namespace RoleTestProject
                 var authRepo = appHost.Resolve<IAuthRepository>();
                 authRepo.InitSchema();
                  CreateUser(authRepo, "admin@email.com", "Admin User", "p@55wOrd", roles:new[]{ RoleNames.Admin });
-                CreateUser(authRepo, "testone@email.com", "Test User", "p@55wOrd", roles: new[] { "TestOne" });
-                CreateUser(authRepo, "testtwo@email.com", "Test User", "p@55wOrd", roles: new[] { "TestTwo" });
-                CreateUser(authRepo, "testthree@email.com", "Test User", "p@55wOrd", roles: new[] { "TestThree" });
+                CreateUser(authRepo, "testone@email.com", "Test User", "p@55wOrd", roles: new[] { "TheRole" });
+                CreateUser(authRepo, "testtwo@email.com", "Test User", "p@55wOrd", roles: new[] { "TheRoleTwo" });
+                CreateUser(authRepo, "testthree@email.com", "Test User", "p@55wOrd", roles: new[] { "TheRoleTwo" });
             }, afterConfigure: appHost => 
                 appHost.AssertPlugin<AuthFeature>().AuthEvents.Add(new AppUserAuthEvents()));
 
